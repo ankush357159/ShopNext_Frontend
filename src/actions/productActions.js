@@ -12,7 +12,7 @@ export const listProducts =
     try {
       dispatch({ type: PRODUCT_LIST_REQUEST });
 
-      let link = `/api/products?keyword=${keyword}`;
+      let link = `http://192.168.0.108:8000/api/products/`;
       const { data } = await axios.get(link);
 
       dispatch({ type: PRODUCT_LIST_SUCCESS, payload: data });
