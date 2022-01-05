@@ -1,26 +1,31 @@
 import React from "react";
-import { Grid, Paper } from "@mui/material";
-import { Link } from "react-router-dom";
+import { Paper, Typography } from "@mui/material";
 import { styled } from "@mui/material/styles";
 
-const Item = styled(Paper)(({ theme }) => ({
-  ...theme.typography.body2,
-  padding: theme.spacing(1),
+const Img = styled("img")({
+  margin: "auto",
+  display: "block",
+  maxWidth: "70%",
+  maxHeight: "100%",
+});
+
+const TypoContainer = styled("div")(({ theme }) => ({
+  display: "flex",
+  flexDirection: "column",
   textAlign: "center",
-  color: theme.palette.text.secondary,
+  fontSize: "12px",
+  overflow: "wrap",
 }));
 
 const ProductCard = ({ product }) => {
   return (
-    <Link className='productCard' to='/'>
-      <Grid container spacing={2}>
-        <Grid item xs={3}>
-          <Item>{product.name}</Item>
-         
-        </Grid>
-      
-      </Grid>
-    </Link>
+    <Paper elevation={4} sx={{ mx: 1 }}>
+      <Img src={"http://192.168.0.108:8000" + product.image} alt='' />
+      <TypoContainer>
+        <Typography>{product.name}</Typography>
+        <Typography sx={{fontWeight:600}}>₹{product.price}</Typography>
+      </TypoContainer>
+    </Paper>
   );
 };
 
