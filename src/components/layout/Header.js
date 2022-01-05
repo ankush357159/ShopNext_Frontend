@@ -68,15 +68,21 @@ const OrderWrapper = styled("div")(({ theme }) => ({
   flexDirection: "column",
   alignItems: "flex-start",
   justifyContent: "flex-start",
+  "&: hover": {
+    border: "1px solid #fff"
+}
 }));
 
 const CartWrapper = styled("div")(({ theme }) => ({
   paddingInline: "5px",
-  padding: theme.spacing(0, 5),
+  padding: theme.spacing(1, 5),
   display: "flex",
   flexDirection: "row",
   alignItems: "flex-start",
   justifyContent: "center",
+  "&: hover": {
+    border: "1px solid #fff"
+}
 }));
 
 const Header = () => {
