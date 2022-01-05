@@ -1,87 +1,124 @@
 import React from "react";
 import { AppBar, InputBase, Toolbar, Typography } from "@mui/material";
-import { Box } from "@mui/system";
-import SearchIcon from "@mui/icons-material/Search";
 import { styled, alpha } from "@mui/material/styles";
+import SearchIcon from "@mui/icons-material/Search";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
+
+const AppbarContainer = styled("div")(({ theme }) => ({
+  position: "relative",
+  "& .css-1rg09f3 .MuiToolbar-root": {
+    padding: theme.spacing(1, 2, 0, 1),
+  },
+}));
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
-  borderRadius: theme.shape.borderRadius,
+  display: "flex",
+  flexDirection: "row",
   backgroundColor: alpha(theme.palette.common.white, 0.3),
   "&:hover": {
-    backgroundColor: alpha(theme.palette.common.white, 0.25),
+    backgroundColor: alpha(theme.palette.common.white, 0.6),
+    width: "75%",
   },
-  marginLeft: 0,
-  width: "100%",
-  [theme.breakpoints.up("sm")]: {
-    marginLeft: theme.spacing(1),
-    width: "auto",
-  },
+  borderRadius: theme.shape.borderRadius
+}));
+
+const SearchContainer = styled("div")(({ theme }) => ({
+  display: "flex",
+  flexGrow: 1,
+
 }));
 
 const SearchIconWrapper = styled("div")(({ theme }) => ({
-  padding: theme.spacing(0, 2),
-  height: "100%",
-  position: "absolute",
-  pointerEvents: "none",
-  display: "flex",
+  paddingTop: "4px",
   alignItems: "center",
-  justifyContent: "center",
+  position: "absolute",
 }));
 
-const StyledInputBase = styled(InputBase)(({ theme }) => ({
+const InputContainer = styled(InputBase)(({ theme }) => ({
   color: "inherit",
-  "& .MuiInputBase-input": {
-    padding: theme.spacing(1, 1, 1, 0),
-    // vertical padding + font size from searchIcon
-    paddingLeft: `calc(1em + ${theme.spacing(4)})`,
-    transition: theme.transitions.create("width"),
-    width: "100%",
-    [theme.breakpoints.up("sm")]: {
-      width: "12ch",
-      "&:focus": {
-        width: "20ch",
-      },
-    },
-  },
+  marginRight: "5px",
+  width: "100%",
+}));
+
+const UserContainer = styled("div")(({ theme }) => ({
+  display: "flex",
+  flexDirection: "row",
+  alignItems: "center",
+  flexgrow: 1,
+  justifyContent: "flex-between",
+}));
+
+const UserWrapper = styled("div")(({ theme }) => ({
+  paddingInline: "5px",
+  padding: theme.spacing(0, 5),
+  display: "flex",
+  flexDirection: "column",
+  alignItems: "center",
+  justifyContent: "center",
+  "&: hover": {
+    border: "1px solid #fff"
+}
+}));
+
+const OrderWrapper = styled("div")(({ theme }) => ({
+  paddingInline: "5px",
+  padding: theme.spacing(0, 5),
+  display: "flex",
+  flexDirection: "column",
+  alignItems: "flex-start",
+  justifyContent: "flex-start",
+  "&: hover": {
+    border: "1px solid #fff"
+}
+}));
+
+const CartWrapper = styled("div")(({ theme }) => ({
+  paddingInline: "5px",
+  padding: theme.spacing(1, 5),
+  display: "flex",
+  flexDirection: "row",
+  alignItems: "flex-start",
+  justifyContent: "center",
+  "&: hover": {
+    border: "1px solid #fff"
+}
 }));
 
 const Header = () => {
   return (
-    <Box>
-      <AppBar position='static'>
+    <AppbarContainer>
+      <AppBar position='static' sx={{ background: "#2c2e33" }}>
         <Toolbar>
-          <Typography variant='h5'>ShopNext</Typography>
-          <Search>
-            <SearchIconWrapper>
-              <SearchIcon />
-            </SearchIconWrapper>
-            <StyledInputBase placeholder='search..' />
-          </Search>
-          <Box
-            sx={{
-              display: "flex",
-              justifyContent: "space-between",
-              width: "100%",
-            }}
-          >
-            <Typography sx={{ px: 10, py: 3 }}>Welcome Guest</Typography>
-            <Box sx={{ p: 2 }}>
-              <Typography sx={{ fontSize: 12 }}>Returns</Typography>
-              <Typography>&Orders</Typography>
-            </Box>
-            <Box sx={{ p: 2, display: "flex"  }}>
+          <SearchContainer>
+            <Typography variant='h5' sx={{ px: 2 }}>
+              ShopNext
+            </Typography>
+            <Search>
+              <InputContainer placeholder='search..' />
+              <SearchIconWrapper>
+                <SearchIcon />
+              </SearchIconWrapper>
+            </Search>
+          </SearchContainer>
+          <UserContainer>
+            <UserWrapper>
+              <Typography>Welcome </Typography>
+              <Typography> Guest</Typography>
+            </UserWrapper>
+            <OrderWrapper>
+              <Typography sx={{fontSize: "12px"}}>Returns</Typography>
+              <Typography>& Orders</Typography>
+            </OrderWrapper>
+            <CartWrapper>
               <ShoppingCartOutlinedIcon />
-              <p sx={{fontSize:12}}>Cart</p>
-            </Box>
-          </Box>
+              <Typography>Cart</Typography>
+            </CartWrapper>
+          </UserContainer>
         </Toolbar>
       </AppBar>
-    </Box>
+    </AppbarContainer>
   );
 };
 
 export default Header;
-
-//The Toolbar is a flex container, allowing flex item properites to be used to lay out the children.
