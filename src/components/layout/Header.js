@@ -3,6 +3,7 @@ import { AppBar, InputBase, Toolbar, Typography } from "@mui/material";
 import { styled, alpha } from "@mui/material/styles";
 import SearchIcon from "@mui/icons-material/Search";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
+import { Link } from "react-router-dom";
 
 const AppbarContainer = styled("div")(({ theme }) => ({
   position: "relative",
@@ -91,9 +92,11 @@ const Header = () => {
       <AppBar position='static' sx={{ background: "#2c2e33" }}>
         <Toolbar>
           <SearchContainer>
+            <Link to="/" style={{textDecoration: "none", color: "inherit"}}>
             <Typography variant='h5' sx={{ px: 2 }}>
               ShopNext
             </Typography>
+            </Link>
             <Search>
               <InputContainer placeholder='search..' />
               <SearchIconWrapper>
